@@ -30,8 +30,9 @@
       <v-btn
         small
         class="ml-4 white--text"
+        :color="`#A6CE37`"
         :class="{
-          'green': !isSearchBlockOpen,
+          'main-color-2': !isSearchBlockOpen,
           'red': isSearchBlockOpen,
         }"
         @click="isSearchBlockOpen = !isSearchBlockOpen"
@@ -42,7 +43,7 @@
     <section
       v-show="isSearchBlockOpen"
       id="search-block"
-      class="main-color-2"
+      class="grey lighten-2"
     >
       <v-row class="no-gutters inner-row mb-4">
         <v-icon
@@ -452,7 +453,7 @@ export default {
     .search-button{
         border-top-right-radius: 5px;
         border-bottom-right-radius: 5px;
-        background-color: #00A859;
+        background-color: #A6CE37;
         padding: 0 1.5rem;
         border-right: solid #E0E0E0 1px;
         border-top: solid #E0E0E0 1px;

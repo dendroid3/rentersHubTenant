@@ -27,9 +27,8 @@
         <v-btn
           text
           small
+          style="background: #A6CE37; color: white;"
           block
-          class="green white--text lighten-1"
-          variant="text"
           @click="goToProperty"
         >
           <v-icon class="mr-4 white--text">
