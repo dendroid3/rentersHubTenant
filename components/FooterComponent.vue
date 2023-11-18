@@ -5,11 +5,6 @@
         <h3>
           About US
         </h3>
-        <!-- Renters Hub is a national company that makes house searching a simple, fast and cheap exercise. We are committed to connecting the house owners to their tenants
-                 in both residential and commercial rental property. The era when you would walk days looking for a house, asking people if there's a vacant space around them,
-                 paying brokers to find you a house(which you may not end up liking) and having to pay to view a house is over. Renters Hub is therefore your savior from the
-                 chaos of house searching. It is where Renters run to get their customers more easily, faster and cheaply. -->
-
         Renters Hub is the national platform where house hunters come to find vacant houses in just few minutes.
         You don't have to walk, ride or drive for hours searching for a house. You can compare many houses while seated somewhere.
         The platform deals only in Rentals in Residential, Commercial and Furnished houses. So, you're not overwhelmed with ads you don't want.

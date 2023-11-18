@@ -9,7 +9,7 @@
           <nav>
             <ul>
               <li>
-                <span class="dropdown blue lighten-2 pa-4">
+                <span class="dropdown main-color-2 pa-4">
                   {{ "Order: " }}
                   <span class="white pointer" @click="showOrder = !showOrder">
                     {{ selectedOrder }}
@@ -46,7 +46,7 @@
               <span v-for="(filter, index) in filterData" :key="index" class="d-flex">
                 <div
                   v-if="index != 'pagination' && index != 'order' && filter != null && index != 'keywords' && index != 'includeAllKeyWords' && index != 'link'"
-                  class="filter-span blue mx-1 lighten-2 pointer"
+                  class="filter-span main-color-2 mx-1 lighten-2 pointer"
                 >
                   {{ (index +": " + filter) | toSentenseCase }}
                   <v-icon small class="red--text pointer close" @click="removeFilter(index)">
@@ -64,7 +64,7 @@
               }"
             >
               <span v-for="(keyword, index) in keywords" :key="index" class="d-flex">
-                <span class="filter-span blue mx-1 lighten-2">
+                <span class="filter-span main-color-2 mx-1 lighten-2">
                   {{ keyword }}
                   <v-icon small class="red--text pointer close" @click="removeKeyword(index)">
                     mdi-close
@@ -84,7 +84,7 @@
           <nav>
             <ul>
               <li>
-                <span class="dropdown blue lighten-2 pa-4">
+                <span class="dropdown main-color-2 pa-4">
                   {{ "Order: " }}
                   <span class="white pointer" @click="showOrder = !showOrder">
                     {{ selectedOrder }}
@@ -123,7 +123,7 @@
           <nav>
             <ul>
               <li>
-                <span class="dropdown blue mx-1 d-flex align-end lighten-2 pa-4">
+                <span class="dropdown main-color-2 mx-1 d-flex align-end lighten-2 pa-4">
                   {{ "Showing: " }}
 
                   <span class="white pointer" @click="showPagination = !showPagination">
@@ -204,7 +204,7 @@
             :key="index"
             class="pagination-link white--text  text-center"
             :class="{
-              'blue lighten-1 pointer': (index != getDisplayProperties.properties.current_page),
+              'main-color-2 lighten-1 pointer': (index != getDisplayProperties.properties.current_page),
               'grey lighten-1': (link.active || (getDisplayProperties.properties.current_page == 1 && link.previous) || (link.label == '...'))
             }"
             @click="(index == getDisplayProperties.properties.current_page || link.label == '...') ? null :goToPage(link.url)"

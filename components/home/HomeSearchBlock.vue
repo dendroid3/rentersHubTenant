@@ -12,7 +12,7 @@
       </h2>
     </v-row>
     <v-row class="no-gutters text--center align-center d-flex justify-center">
-      <input v-model="simpleSearchKeywords" class="search-input" placeholder="Enter Search EG: Bedsitter">
+      <input v-model="simpleSearchKeywords" class="search-input" placeholder="Search houses e.g: Bedsitters in Kasarani">
       <button class="search-button white--text" @click="simpleSearchSubmit">
         <span v-if="!isSimpleSeaching">
           Search
@@ -42,7 +42,7 @@
     <section
       v-show="isSearchBlockOpen"
       id="search-block"
-      class="blue lighten-4"
+      class="main-color-2"
     >
       <v-row class="no-gutters inner-row mb-4">
         <v-icon
@@ -61,7 +61,7 @@
           <v-btn
             small
             :class="{
-              'blue white--text': categorySelection === 'Residential'
+              'main-color-2 white--text': categorySelection === 'Residential'
             }"
             @click="setTypeSelection('Residential')"
           >
@@ -72,7 +72,7 @@
           <v-btn
             small
             :class="{
-              'blue white--text': categorySelection === 'Commercial'
+              'main-color-2 white--text': categorySelection === 'Commercial'
             }"
             @click="setTypeSelection('Commercial')"
           >
@@ -83,7 +83,7 @@
           <v-btn
             small
             :class="{
-              'blue white--text': categorySelection === 'Furnished'
+              'main-color-2 white--text': categorySelection === 'Furnished'
             }"
             @click="setTypeSelection('Furnished')"
           >

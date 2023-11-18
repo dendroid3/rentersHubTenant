@@ -196,7 +196,7 @@ import { mapActions, mapGetters } from 'vuex'
 export default {
 
   head () {
-    if (process.browaser) {
+    if (process.browser) {
       return { title: this.getCurrentProperty.name }
     }
   },
