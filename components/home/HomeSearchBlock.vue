@@ -7,13 +7,13 @@
       </h1>
     </v-row>
     <v-row class="no-gutters text--center align-center d-flex justify-center">
-      <h2 class="my-4">
+      <h2 class="my-4 text-center">
         {{ 'Find ' + numberOfProperties + '+ Vacant Houses!' }}
       </h2>
     </v-row>
     <v-row class="no-gutters text--center align-center d-flex justify-center">
       <input v-model="simpleSearchKeywords" class="search-input" placeholder="Search houses e.g: Bedsitters in Kasarani">
-      <button class="search-button white--text" @click="simpleSearchSubmit">
+      <button class="search-button white--text d-flex" @click="simpleSearchSubmit">
         <span v-if="!isSimpleSeaching">
           Search
         </span>
@@ -437,6 +437,7 @@ export default {
         background-color: white;
         padding: 0 1.5rem;
         line-height: 2.5rem;
+        width: 50vw;
     }
 
     .search-input:focus{
