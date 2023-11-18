@@ -27,7 +27,7 @@
                   <li
                     v-for="(order_by, index) in order"
                     :key="index"
-                    class="pointer"
+                    class="pointer white--text"
                     @click="changeOrder(order_by)"
                   >
                     <a>
@@ -102,7 +102,7 @@
                   <li
                     v-for="(order_by, index) in order"
                     :key="index"
-                    class="pointer"
+                    class="pointer white--text"
                     @click="changeOrder(order_by)"
                   >
                     <a>
@@ -145,7 +145,7 @@
                   <li
                     v-for="(pagination_value, index) in paginationValues"
                     :key="index"
-                    class="pointer"
+                    class="pointer white--text"
                     @click="changePagination(pagination_value)"
                   >
                     <a>
@@ -492,7 +492,7 @@ nav li {
   position: relative;
 }
 nav a {
-  color: #444;
+  color: white;
   display: block;
   font: normal 13px/50px Arial, Helvetica, sans-serif;
   padding: 0 25px;
@@ -525,8 +525,9 @@ nav li ul {
   transition: all .25s ease;
 }
 .show-categories {
-  color:#FFF;
+  /* color:#FFF; */
   background: #A6CE37;
+  color: white;
   opacity: 1;
   top: 0;
   visibility: visible;
