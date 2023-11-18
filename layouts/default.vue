@@ -19,3 +19,8 @@ export default {
   name: 'DefaultLayout'
 }
 </script>
+<style lang="css">
+  .pointer{
+    cursor: pointer;
+  }
+</style>
