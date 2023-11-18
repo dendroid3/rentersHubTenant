@@ -526,7 +526,7 @@ nav li ul {
 }
 .show-categories {
   color:#FFF;
-  background: #01abf8;
+  background: #A6CE37;
   opacity: 1;
   top: 0;
   visibility: visible;
