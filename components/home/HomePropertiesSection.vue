@@ -185,7 +185,7 @@
             v-for="property in properties.properties.data"
             v-else
             :key="property.id"
-            class="col-md-3 col-12"
+            class="col-md-3 col-6"
           >
             <property-card :property="property" />
           </v-col>
