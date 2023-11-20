@@ -30,11 +30,11 @@
             </div>
           </v-col>
           <v-col class="col-md-4 col-12">
-            <h4>Managed by:</h4>
-            <span>{{ getCurrentProperty.contact.name }}</span> <br> <br>
+            <!-- <h4>Managed by:</h4>
+            <span>{{ getCurrentProperty.contact.name }}</span> <br> <br> -->
 
             <h4>Company:</h4>
-            <span>{{ getCurrentProperty.company.name }}</span> <br> <br>
+            <span>{{ getCurrentProperty.company_name }}</span> <br> <br>
 
             <v-btn block class="red white--text" small @click="toogleContactForm">
               Contact Landlord
@@ -52,12 +52,11 @@
             <section v-if="prospect_recorded">
               <v-col class="col-12 text-center">
                 {{ "Hello " + prospect.name + "," }} <br>
-                You can contact {{ getCurrentProperty.contact.name }} through the following contacts:
+                You can contact the landlord through the following contact:
               </v-col>
               <v-col class="col-12 mt-4">
                 <div class="text-center">
-                  Primary phone: <br>
-                  {{ "+254 " + getCurrentProperty.contact.primary_phone_number }}
+                  {{ getCurrentProperty.contact }}
                 </div>
                 <v-row class="text-center no-gutters">
                   <v-col class="col-6 text-end">
@@ -65,7 +64,7 @@
                       text
                       color="orange-lighten-2"
                       variant="text"
-                      @click="perpToRecordClick('Primary Phone')"
+                      @click="perpToRecordClick('Phone')"
                     >
                       <v-icon large class="blue--text">
                         mdi-phone
@@ -77,65 +76,10 @@
                       text
                       color="orange-lighten-2"
                       variant="text"
-                      @click="perpToRecordClick('Primary WhatsApp')"
+                      @click="perpToRecordClick('WhatsApp')"
                     >
                       <v-icon large class="green--text">
                         mdi-whatsapp
-                      </v-icon>
-                    </v-btn>
-                  </v-col>
-                </v-row>
-              </v-col>
-
-              <v-col v-if="getCurrentProperty.contact.secondary_phone_number" class="col-12 mt-4">
-                <div class="text-center">
-                  Secondary phone: <br>
-                  {{ "+254 " + getCurrentProperty.contact.secondary_phone_number }}
-                </div>
-                <v-row class="text-center no-gutters">
-                  <v-col class="col-6 text-end">
-                    <v-btn
-                      text
-                      color="orange-lighten-2"
-                      variant="text"
-                      @click="perpToRecordClick('Secondary Phone')"
-                    >
-                      <v-icon large class="blue--text">
-                        mdi-phone
-                      </v-icon>
-                    </v-btn>
-                  </v-col>
-                  <v-col class="col-6 text-start">
-                    <v-btn
-                      text
-                      color="orange-lighten-2"
-                      variant="text"
-                      @click="perpToRecordClick('Secondary WhatsApp')"
-                    >
-                      <v-icon large class="green--text">
-                        mdi-whatsapp
-                      </v-icon>
-                    </v-btn>
-                  </v-col>
-                </v-row>
-              </v-col>
-
-              <v-col class="col-12 mt-4">
-                <div class="text-center">
-                  Email: <br>
-                  {{ getCurrentProperty.contact.email }}
-                </div>
-                <v-row class="text-center no-gutters">
-                  <v-col class="col-12 text-center">
-                    <v-btn
-                      text
-                      color="orange-lighten-2"
-                      variant="text"
-
-                      @click="perpToRecordClick('Email')"
-                    >
-                      <v-icon large class="green--text">
-                        mdi-mail
                       </v-icon>
                     </v-btn>
                   </v-col>
@@ -283,30 +227,15 @@ export default {
 
       let url = null
 
-      if (channel === 'Primary Phone') {
-        url = 'tel:' + this.getCurrentProperty.contact.primary_phone_number
+      if (channel === 'Phone') {
+        url = 'tel:' + this.getCurrentProperty.contact
       }
 
-      if (channel === 'Secondary Phone') {
-        url = 'tel:' + this.getCurrentProperty.contact.secondary_phone_number
-      }
-
-      if (channel === 'Primary WhatsApp') {
+      if (channel === 'WhatsApp') {
         url = 'https://wa.me/254' +
-                this.getCurrentProperty.contact.primary_phone_number +
+                this.getCurrentProperty.contact +
                 '?text=I\'m%20interested%20in%20your%20property%20found%20on:%20https://rentershub.co.ke/property/' +
                 this.getCurrentProperty.id
-      }
-
-      if (channel === 'Secondary WhatsApp') {
-        url = 'https://wa.me/254' +
-                this.getCurrentProperty.contact.secondary_phone_number +
-                '?text=I\'m%20interested%20in%20your%20property%20found%20on:%20https://rentershub.co.ke/property/' +
-                this.getCurrentProperty.id
-      }
-
-      if (channel === 'Email') {
-        url = 'mailto:' + this.getCurrentProperty.contact.email
       }
 
       window.open(url)
