@@ -12,7 +12,6 @@
             </v-row>
             <v-img
               :src="image_source"
-              cover
               class="back"
             />
 
