@@ -21,7 +21,7 @@
           <v-icon>
             mdi-mail
           </v-icon>
-          info@rentershub.co.ke
+          hello@rentershub.co.ke
         </div>
         <div class="pointer">
           <v-icon>

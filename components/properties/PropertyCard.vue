@@ -4,6 +4,7 @@
       class="mx-auto back"
       max-width="344"
       hover
+      @click="goToProperty"
     >
       <v-img
         :src="image_source"
@@ -23,7 +24,7 @@
         {{ property.price + "/" + property.payment }}
       </v-card-subtitle>
 
-      <v-card-actions>
+      <!-- <v-card-actions>
         <v-btn
           text
           small
@@ -36,7 +37,7 @@
           </v-icon>
           View
         </v-btn>
-      </v-card-actions>
+      </v-card-actions> -->
     </v-card>
   </div>
 </template>

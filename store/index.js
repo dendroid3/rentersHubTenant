@@ -64,7 +64,6 @@ export const actions = {
       const res = await
       axios.post(BASE_URL + 'get_specified_clicks', data)
       commit('SET_CLICKS_RECORDS', res.data)
-      console.log(res.data)
     } catch (err) {
       console.log(err)
     }
@@ -120,7 +119,6 @@ export const actions = {
 
   async fetchSimpleFilteredProperties ({ commit }, data) {
     try {
-      console.log('fetchSimpleFilteredProperties called')
       commit('SET_SEARCH_TYPE', 'simple')
       commit('SET_IS_FETCHINGPROPERTIES', true)
       commit('SET_FILTERS', data)
