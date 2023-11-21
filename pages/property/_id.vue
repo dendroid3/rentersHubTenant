@@ -11,9 +11,18 @@
               </h3>
             </v-row>
             <v-img
+              style="position: relative;"
               :src="image_source"
+              cover
               class="back"
-            />
+            >
+              <v-icon class="rounded blue lighten-4" style="position: absolute; top: 50%; left: 0.25rem;" @click="reduceImageIndex()">
+                mdi-arrow-left
+              </v-icon>
+              <v-icon class="rounded blue lighten-4" style="position: absolute; top: 50%; right: 0.25rem;" @click="addImageIndex()">
+                mdi-arrow-right
+              </v-icon>
+            </v-img>
 
             <div class="d-flex justify-center mt-1 image-preview-strip">
               <div v-for="(image, index) in getCurrentProperty.property_images" :key="image.id" class="d-flex col-md-1 col-2 " @click="showImage(index)">
@@ -31,7 +40,9 @@
             <!-- <h4>Managed by:</h4>
             <span>{{ getCurrentProperty.contact.name }}</span> <br> <br> -->
 
-            <h4 class="mt-4">Company:</h4>
+            <h4 class="mt-4">
+              Company:
+            </h4>
             <span>{{ getCurrentProperty.company_name }}</span> <br> <br>
 
             <v-btn block class="red white--text" small @click="toogleContactForm">
@@ -220,6 +231,22 @@ export default {
 
   methods: {
     ...mapActions(['fetchProperty', 'recordProspect', 'recordClick']),
+
+    reduceImageIndex () {
+      if (this.image_in_view > 0) {
+        this.image_in_view = this.image_in_view - 1
+      } else {
+        this.image_in_view = this.getCurrentProperty.property_images.length - 1
+      }
+    },
+
+    addImageIndex () {
+      if (this.image_in_view === (this.getCurrentProperty.property_images.length - 1)) {
+        this.image_in_view = 0
+      } else {
+        this.image_in_view = this.image_in_view + 1
+      }
+    },
 
     perpToRecordClick (channel) {
       const data = {

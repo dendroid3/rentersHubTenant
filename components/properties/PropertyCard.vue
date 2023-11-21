@@ -75,11 +75,6 @@ export default {
       this.setCurrentProperty(this.property)
       this.$router.push('/property/' + this.property.id)
     }
-  },
-
-  mounted () {
-    console.log('this.image_source')
-    console.log(this.image_source)
   }
 }
 </script>
