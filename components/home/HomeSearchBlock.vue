@@ -279,17 +279,17 @@ export default {
 
     isTypingNeighbourhood: function () {
       if (!this.isTypingNeighbourhood) {
-        // const neighbourhoodInputValue = document.getElementById('neighbourhood_input').value
+        const neighbourhoodInputValue = document.getElementById('neighbourhood_input').value
 
-        // const data = {
-        //   location_stub: neighbourhoodInputValue
-        // }
+        const data = {
+          location_stub: neighbourhoodInputValue
+        }
 
         this.isFetchingNeighbourhood = true
 
-        // this.$store.dispatch(fetchLocations(data).then(() => {
-        //   this.isFetchingNeighbourhood = false
-        // }))
+        this.fetchLocations(data).then(() => {
+          this.isFetchingNeighbourhood = false
+        })
       }
     }
   },
@@ -299,7 +299,7 @@ export default {
   },
 
   methods: {
-    ...mapActions(['fetchFilteredProperties', 'fetchSimpleFilteredProperties']),
+    ...mapActions(['fetchFilteredProperties', 'fetchSimpleFilteredProperties', 'fetchLocations']),
 
     setTypeSelection (selection) {
       this.categorySelection = selection
@@ -348,7 +348,7 @@ export default {
         alert('Enter a key word to search.')
         return
       }
-      // this.isSimpleSeaching = true
+      this.isSimpleSeaching = true
 
       const data = {
         keywords: this.simpleSearchKeywords
