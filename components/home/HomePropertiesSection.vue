@@ -342,7 +342,7 @@ export default {
       'Cheapest',
       'Expensive'
     ],
-    selectedOrder: 'Newest',
+    selectedOrder: 'Random',
     showOrder: false,
     showPagination: false,
     paginationValues: [5, 10, 25, 50, 75, 100],

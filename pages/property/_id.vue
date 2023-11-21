@@ -12,7 +12,6 @@
             </v-row>
             <v-img
               :src="image_source"
-              height="350px"
               cover
               class="back"
             />
@@ -33,7 +32,7 @@
             <!-- <h4>Managed by:</h4>
             <span>{{ getCurrentProperty.contact.name }}</span> <br> <br> -->
 
-            <h4>Company:</h4>
+            <h4 class="mt-4">Company:</h4>
             <span>{{ getCurrentProperty.company_name }}</span> <br> <br>
 
             <v-btn block class="red white--text" small @click="toogleContactForm">
