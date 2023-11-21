@@ -1,6 +1,6 @@
 {
   "name": "rentershub",
-  "version": "1.0.0",
+  "version": "2023.11.21",
   "private": true,
   "scripts": {
     "dev": "nuxt",

@@ -41,7 +41,6 @@ export const actions = {
 
   async recordClick ({ commit }, data) {
     try {
-      console.log(data)
       const res = await
       axios.post(BASE_URL + 'record_click', data)
       commit('SET_CLICK_RECORD', res.data)
@@ -96,7 +95,6 @@ export const actions = {
     try {
       const res = await
       axios.post(BASE_URL + 'location', data)
-      console.log(res)
       commit('SET_LOCATIONS', res.data)
     } catch (err) {
       console.log(err)
@@ -123,14 +121,12 @@ export const actions = {
   async fetchSimpleFilteredProperties ({ commit }, data) {
     try {
       console.log('fetchSimpleFilteredProperties called')
-      console.log(data)
       commit('SET_SEARCH_TYPE', 'simple')
       commit('SET_IS_FETCHINGPROPERTIES', true)
       commit('SET_FILTERS', data)
       const url = data.link ? data.link : BASE_URL + 'simple_search'
       const res = await
       axios.post(url, data)
-      console.log(res)
       commit('SET_DISPLAY_VACANCIES', res.data)
       commit('SET_IS_FETCHINGPROPERTIES', false)
     } catch (err) {
@@ -143,7 +139,6 @@ export const actions = {
     try {
       const res = await
       axios.post(BASE_URL + 'property', data)
-      console.log(res)
       commit('SET_CURRENT_PROPERTY', res.data)
     } catch (err) {
       console.log(err)
@@ -156,10 +151,8 @@ export const actions = {
 
   async recordProspect ({ commit }, data) {
     try {
-      console.log(data)
       const res = await
       axios.post(BASE_URL + 'record_prospect', data)
-      console.log(res)
       commit('SET_PROSPECT_RECORD', res.data)
     } catch (err) {
       console.log(err)

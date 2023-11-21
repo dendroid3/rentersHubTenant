@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="pa-4 wrapper">
-      <div id="top_div"> </div>
+      <div id="top_div" />
       <section v-if="propertyIsAvailable">
         <v-row class="pa-4">
           <v-col class="col-md-8 col-12">
@@ -20,7 +20,7 @@
             <div class="d-flex justify-center mt-1 image-preview-strip">
               <div v-for="(image, index) in getCurrentProperty.property_images" :key="image.id" class="d-flex col-md-1 col-2 " @click="showImage(index)">
                 <v-img
-                  :src="`https://landlords.rentershub.co.ke/` + image.url"
+                  :src="getImageSource(image.url)"
                   cover
                   :class="{
                     'image-preview': image_in_view == index
@@ -149,7 +149,7 @@ export default {
     ...mapGetters(['getCurrentProperty', 'getProspectRecord']),
 
     image_source () {
-      const baseUrl = 'https://landlords.rentershub.co.ke/'
+      const baseUrl = 'https://landlords.rentershub.co.ke/propertyimages/'
 
       if (!this.getCurrentProperty) {
         return
@@ -159,7 +159,15 @@ export default {
         return
       }
 
-      return baseUrl + this.getCurrentProperty.property_images[this.image_in_view].url
+      const imageUrl = this.getCurrentProperty.property_images[this.image_in_view].url
+
+      const imageUrlsArray = imageUrl.split('/')
+
+      if (imageUrlsArray.length === 2) {
+        return baseUrl + imageUrlsArray[1]
+      }
+
+      return baseUrl + imageUrlsArray[0]
     },
 
     description () {
@@ -264,6 +272,18 @@ export default {
 
     showImage (imageIndex) {
       this.image_in_view = imageIndex
+    },
+
+    getImageSource (imageUrl) {
+      const baseUrl = 'https://landlords.rentershub.co.ke/propertyimages/'
+
+      const imageUrlsArray = imageUrl.split('/')
+
+      if (imageUrlsArray.length === 2) {
+        return baseUrl + imageUrlsArray[1]
+      }
+
+      return baseUrl + imageUrlsArray[0]
     },
 
     goToTop () {

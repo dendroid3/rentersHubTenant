@@ -12,7 +12,7 @@
       </h2>
     </v-row>
     <v-row class="no-gutters text--center align-center d-flex justify-center">
-      <input v-model="simpleSearchKeywords" class="search-input" placeholder="Search houses e.g: Bedsitters in Kasarani">
+      <input v-model="simpleSearchKeywords" class="search-input" placeholder="Search, eg Bedsitter in Kasarani">
       <button class="search-button white--text d-flex" @click="simpleSearchSubmit">
         <span v-if="!isSimpleSeaching">
           Search
@@ -299,7 +299,7 @@ export default {
   },
 
   methods: {
-    ...mapActions(['fetchFilteredProperties']),
+    ...mapActions(['fetchFilteredProperties', 'fetchSimpleFilteredProperties']),
 
     setTypeSelection (selection) {
       this.categorySelection = selection
@@ -336,7 +336,6 @@ export default {
       this.$store.getters.getFilters.order ? data.order = this.$store.getters.getFilters.order : data.order = 'Random'
       this.$store.getters.getFilters.pagination ? data.pagination = this.$store.getters.getFilters.pagination : data.pagination = 10
 
-      console.log(data)
       this.isSubmittingData = true
       this.fetchFilteredProperties(data).then(() => {
         this.isSubmittingData = false
@@ -349,9 +348,7 @@ export default {
         alert('Enter a key word to search.')
         return
       }
-      console.log('this.$store.getters.clicks/getClicksRecord')
       // this.isSimpleSeaching = true
-      console.log(this.$store.getters)
 
       const data = {
         keywords: this.simpleSearchKeywords
@@ -360,14 +357,11 @@ export default {
       this.$store.getters.getFilters ? (this.$store.getters.getFilters.order ? data.order = this.$store.getters.getFilters.order : data.order = 'Random') : data.order = 'Random'
       this.$store.getters.getFilters ? (this.$store.getters.getFilters.pagination ? data.pagination = this.$store.getters.getFilters.pagination : data.pagination = 10) : data.pagination = 10
 
-      console.log(this.$store.getters.getFilters)
-      console.log(this.$store)
+      // this.$store.dispatch('fetchSimpleFilteredProperties', data, { root: true })
 
-      this.$store.dispatch('fetchSimpleFilteredProperties', data, { root: true })
-
-      // this.$store.dispatch(fetchSimpleFilteredProperties(data).then(() => {
-      //   this.isSimpleSeaching = false
-      // }))
+      this.fetchSimpleFilteredProperties(data).then(() => {
+        this.isSimpleSeaching = false
+      })
     },
 
     setIsTypingNeighbourhood () {
@@ -381,7 +375,6 @@ export default {
 
     boot () {
       // alert('WTF')
-      // console.log('wtf')
       const intervalId = setInterval(() => {
         const additionalNumber = Math.floor((Math.random() * 100))
 
