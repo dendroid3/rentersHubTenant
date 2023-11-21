@@ -226,7 +226,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters(['properties/getFilters', 'locations/getLocations']),
+    ...mapGetters(['getFilters', 'getLocations']),
 
     canSubmit () {
       if (!this.categorySelection && (!this.filters.county || !this.filters.type || !this.filters.min || !this.filters.max || !this.filters.keywords)) {
