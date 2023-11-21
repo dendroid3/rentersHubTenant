@@ -38,8 +38,7 @@ export default {
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
     // https://go.nuxtjs.dev/vuetify
-    '@nuxtjs/vuetify',
-    '@nuxtjs/google-analytics'
+    '@nuxtjs/vuetify'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -47,14 +46,15 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     '@nuxtjs/gtm',
+    '@nuxtjs/google-analytics'
   ],
+
+  googleAnalytics: {
+    id: 'UA-12301-2'
+  },
 
   gtm: {
     id: 'GTM-KFZRQG3'
-  },
-
-  googleAnalytics: {
-    id: 'G-V0ELJEMCQD'
   },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
