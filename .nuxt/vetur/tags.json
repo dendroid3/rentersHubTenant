@@ -1,0 +1,26 @@
+{
+  "AlertComponent": {
+    "description": "Auto imported from components/AlertComponent.vue"
+  },
+  "EmptyComponent": {
+    "description": "Auto imported from components/EmptyComponent.vue"
+  },
+  "FooterComponent": {
+    "description": "Auto imported from components/FooterComponent.vue"
+  },
+  "LoadingWidget": {
+    "description": "Auto imported from components/LoadingWidget.vue"
+  },
+  "NavBar": {
+    "description": "Auto imported from components/NavBar.vue"
+  },
+  "HomePropertiesSection": {
+    "description": "Auto imported from components/home/HomePropertiesSection.vue"
+  },
+  "HomeSearchBlock": {
+    "description": "Auto imported from components/home/HomeSearchBlock.vue"
+  },
+  "PropertiesPropertyCard": {
+    "description": "Auto imported from components/properties/PropertyCard.vue"
+  }
+}

@@ -1,0 +1,16 @@
+[
+  {
+    "name": "index",
+    "path": "/",
+    "component": "C:\\\\xampp\\\\htdocs\\\\active\\\\renters\\\\tenant_nuxt\\\\pages\\\\index.vue",
+    "chunkName": "pages/index",
+    "_name": "_2b5cf975"
+  },
+  {
+    "name": "property-id",
+    "path": "/property/:id?",
+    "component": "C:\\\\xampp\\\\htdocs\\\\active\\\\renters\\\\tenant_nuxt\\\\pages\\\\property\\\\_id.vue",
+    "chunkName": "pages/property/_id",
+    "_name": "_260839a8"
+  }
+]
