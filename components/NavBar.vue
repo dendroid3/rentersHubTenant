@@ -4,21 +4,27 @@
     app
     color="#09308F"
   >
-    <div class="d-flex align-center pointer white rounded" @click="goTo('/')">
+    <div class="d-flex align-center pointer white rounded pr-4 pt-1 pb-1"
+      id="logoDiv"
+      @click="goTo('/')">
       <v-img
         alt="Renters Hub Logo"
         class="shrink"
         contain
         :src="require('../assets/logo.png')"
         transition="scale-transition"
-        width="70"
+        width="60"
       />
+      <h2>
+        RentersHub
+      </h2>
     </div>
 
     <v-spacer />
 
     <v-btn
-      class="red white--text"
+      class="red white--text pr-4 pt-1 pb-1"
+      id="postButton"
       href="https://landlords.rentershub.co.ke/account.php"
       text
     >
@@ -36,7 +42,13 @@ export default {
     }
   }
 }
-</script>
-<style lang="">
 
+</script>
+<style lang="css" scoped>
+  #logoDiv{
+    height: 100%;
+  }
+  #postButton{
+    height: 100%;
+  }
 </style>

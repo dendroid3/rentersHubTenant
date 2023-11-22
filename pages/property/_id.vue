@@ -261,7 +261,7 @@ export default {
       let url = null
 
       if (channel === 'Phone') {
-        url = 'tel:' + this.getCurrentProperty.contact
+        url = 'tel:0' + this.getCurrentProperty.contact
       }
 
       if (channel === 'WhatsApp') {

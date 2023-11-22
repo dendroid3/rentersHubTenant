@@ -2,18 +2,13 @@
   <div class="grey lighten-3 py-4">
     <div id="top_div" />
     <v-row class="no-gutters text--center align-center d-flex justify-center">
-      <h1 class="text-center">
+      <h1 class="text-center mb-4">
         The place where smart Kenyans come to find houses.
       </h1>
     </v-row>
     <v-row class="no-gutters text--center align-center d-flex justify-center">
-      <h2 class="my-4 text-center">
-        {{ 'Find ' + numberOfProperties + '+ Vacant Houses!' }}
-      </h2>
-    </v-row>
-    <v-row class="no-gutters text--center align-center d-flex justify-center">
       <input v-model="simpleSearchKeywords" class="search-input" placeholder="Search, eg Bedsitter in Kasarani">
-      <button class="search-button white--text d-flex" @click="simpleSearchSubmit">
+      <button class="search-button white--text d-flex justify-center align-center" @click="simpleSearchSubmit">
         <span v-if="!isSimpleSeaching">
           Search
         </span>
@@ -213,7 +208,6 @@ export default {
   data () {
     return {
       categorySelection: null,
-      numberOfProperties: 0,
       isSearchBlockOpen: false,
       filters: {},
       simpleSearchKeywords: null,
@@ -294,10 +288,6 @@ export default {
     }
   },
 
-  mounted () {
-    this.boot()
-  },
-
   methods: {
     ...mapActions(['fetchFilteredProperties', 'fetchSimpleFilteredProperties', 'fetchLocations']),
 
@@ -371,20 +361,6 @@ export default {
         this.isTypingNeighbourhood = false
         clearTimeout(timeout)
       }, 1000)
-    },
-
-    boot () {
-      // alert('WTF')
-      const intervalId = setInterval(() => {
-        const additionalNumber = Math.floor((Math.random() * 100))
-
-        if (this.numberOfProperties + additionalNumber < 10000) {
-          this.numberOfProperties = this.numberOfProperties + additionalNumber
-        } else {
-          this.numberOfProperties = '10,000'
-          clearInterval(intervalId)
-        }
-      }, 20)
     }
   }
 }
@@ -431,6 +407,7 @@ export default {
         padding: 0 1.5rem;
         line-height: 2.5rem;
         width: 50vw;
+        height: 2.5rem;
     }
 
     .search-input:focus{
@@ -455,6 +432,7 @@ export default {
         line-height: 2.5rem;
         font-weight: 800;
         width: 6rem;
+        height: 2.5rem;
     }
     .container-fluid {
         padding-bottom: 10px;

@@ -18,16 +18,20 @@
           Contact US
         </h3>
         <div class="pointer">
-          <v-icon>
-            mdi-mail
-          </v-icon>
-          hello@rentershub.co.ke
+          <a href="mailto:hello@rentershub.co.ke">
+            <v-icon>
+              mdi-mail
+            </v-icon>
+            hello@rentershub.co.ke
+          </a>
         </div>
         <div class="pointer">
-          <v-icon>
-            mdi-facebook
-          </v-icon>
-          Renters Hub
+          <a href="https://www.facebook.com/rentershub.co.ke/" target="_black">
+            <v-icon>
+              mdi-facebook
+            </v-icon>
+            Renters Hub
+          </a>
         </div>
         <div class="pointer">
           <v-icon>
@@ -36,16 +40,20 @@
           @Rentershub
         </div>
         <div class="pointer">
-          <v-icon>
-            mdi-phone
-          </v-icon>
-          0731 352 350
+          <a href="tel:0731352350" target="_black">
+            <v-icon>
+              mdi-phone
+            </v-icon>
+            0731 352 350
+          </a>
         </div>
         <div class="pointer">
-          <v-icon>
-            mdi-whatsapp
-          </v-icon>
-          +254731352350
+          <a href="https://wa.me/254731352350?text=Hello.%20Please%20help%20me%20find%20a%20house%20in%20your%20network." target="_black">
+            <v-icon>
+              mdi-whatsapp
+            </v-icon>
+            +254731352350
+          </a>
         </div>
         <div class="pointer">
           <v-icon>
@@ -64,11 +72,11 @@
           </v-icon>
           2023
         </v-col>
-        <v-col class="col-12 d-flex align-center justify-center">
+        <!-- <v-col class="col-12 d-flex align-center justify-center">
           <a href="#">
             Terms & Conditions
           </a>
-        </v-col>
+        </v-col> -->
       </v-row>
     </v-row>
   </div>
@@ -78,6 +86,9 @@ export default {
 
 }
 </script>
-<style lang="">
-
+<style lang="css" scoped>
+  a {
+    text-decoration: none;
+    color: black;
+  }
 </style>
