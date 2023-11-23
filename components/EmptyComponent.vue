@@ -12,12 +12,33 @@
         {{ message }}
       </div>
       <div class="d-flex justify-center">
-        <v-btn small class="green white--text" @click="sendMessageToWhatsApp">
-          <v-icon small>
+        <v-spacer />
+        <v-btn
+        :color="`#A6CE37`"
+        small
+        class="white--text"
+        @click="sendMessageToWhatsApp">
+          <v-icon
+          class="mr-2"
+          small>
             mdi-whatsapp
           </v-icon>
-          Contact Customer Care
+          WhatsApp
         </v-btn>
+        <v-spacer />
+        <v-btn
+        :color="`#A6CE37`"
+        small
+        class="white--text"
+        @click="call">
+          <v-icon
+          class="mr-2"
+          small>
+            mdi-phone
+          </v-icon>
+          Call
+        </v-btn>
+        <v-spacer />
       </div>
     </section>
   </div>
@@ -67,8 +88,13 @@ export default {
 
       message = message + '\nCould%20you%20please%20help%20me%20on%20with%20this?\nI%20used%20the%20' + this.getSearchType + '%20search%20functionality.'
 
-      const url = 'https://wa.me/25431352350?text=' + message
+      const url = 'https://wa.me/254731352350?text=' + message
       // alert(message)
+      window.open(url)
+    },
+
+    call () {
+      const url = 'tel:0731352350'
       window.open(url)
     }
   }
