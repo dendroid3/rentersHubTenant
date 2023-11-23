@@ -59,7 +59,7 @@ export default {
       let message = 'Hello.%20I%20am%20from%20the%20website,%20https://rentershub.co.ke%20and%20I%20need%20some%20more%20assistance.%0a%0a'
 
       if (this.getFilters) {
-        message = message + 'I%20am%20searching%20for%20a%20property%20that%20meets%20this%20creterion: '
+        message = message + 'I%20am%20searching%20for%20a%20property%20that%20meets%20this%20criterion: '
       }
 
       if (this.getFilters.category) {
