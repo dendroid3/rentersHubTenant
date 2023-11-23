@@ -15,8 +15,17 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
-  name: 'DefaultLayout'
+  name: 'DefaultLayout',
+
+  methods: {
+    ...mapActions(['fetchLocations'])
+  },
+
+  created () {
+    this.fetchLocations()
+  }
 }
 </script>
 <style lang="css">

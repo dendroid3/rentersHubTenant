@@ -56,8 +56,9 @@
         <v-col class="col-md-2 col-12 d-flex justify-center">
           <v-btn
             small
+            :color="(categorySelection === 'Residential') ? '#A6CE37' : 'grey'"
             :class="{
-              'main-color-2 white--text': categorySelection === 'Residential'
+              'white--text': categorySelection === 'Residential'
             }"
             @click="setTypeSelection('Residential')"
           >
@@ -67,8 +68,9 @@
         <v-col class="col-md-2 col-12 mt-1 d-flex justify-center">
           <v-btn
             small
+            :color="(categorySelection === 'Commercial') ? '#A6CE37' : 'grey'"
             :class="{
-              'main-color-2 white--text': categorySelection === 'Commercial'
+              'white--text': categorySelection === 'Commercial'
             }"
             @click="setTypeSelection('Commercial')"
           >
@@ -78,8 +80,9 @@
         <v-col class="col-md-2 col-12 mt-1 d-flex justify-center">
           <v-btn
             small
+            :color="(categorySelection === 'Furnished') ? '#A6CE37' : 'grey'"
             :class="{
-              'main-color-2 white--text': categorySelection === 'Furnished'
+              'white--text': categorySelection === 'Furnished'
             }"
             @click="setTypeSelection('Furnished')"
           >
@@ -266,30 +269,8 @@ export default {
     }
   },
 
-  watch: {
-    neighbourhood: function () {
-      this.filters.neighbourhood = this.neighbourhood
-    },
-
-    isTypingNeighbourhood: function () {
-      if (!this.isTypingNeighbourhood) {
-        const neighbourhoodInputValue = document.getElementById('neighbourhood_input').value
-
-        const data = {
-          location_stub: neighbourhoodInputValue
-        }
-
-        this.isFetchingNeighbourhood = true
-
-        this.fetchLocations(data).then(() => {
-          this.isFetchingNeighbourhood = false
-        })
-      }
-    }
-  },
-
   methods: {
-    ...mapActions(['fetchFilteredProperties', 'fetchSimpleFilteredProperties', 'fetchLocations']),
+    ...mapActions(['fetchFilteredProperties', 'fetchSimpleFilteredProperties']),
 
     setTypeSelection (selection) {
       this.categorySelection = selection
@@ -444,5 +425,9 @@ export default {
         margin-top: 10px;
         margin-left: 15px;
         margin-right: 15px;
+    }
+
+    .main-color-2{
+      background: #A6CE37;
     }
 </style>
