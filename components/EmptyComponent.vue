@@ -56,26 +56,26 @@ export default {
 
   methods: {
     sendMessageToWhatsApp () {
-      let message = 'Hello.%20I%20am%20from%20your%20website%20and%20I%20need%20some%20more%20assistance.\n'
+      let message = 'Hello.%20I%20am%20from%20your%20website%20and%20I%20need%20some%20more%20assistance.%0a'
 
       if (this.getFilters) {
         message = message + 'I%20am%20searching%20for%20a%20property%20that%20meet%20this%20creterion: '
       }
 
       if (this.getFilters.category) {
-        message = message + '\n*Category:*' + this.getFilters.category
+        message = message + '%0a*Category:* ' + this.getFilters.category
       }
 
       if (this.getFilters.neighbourhood) {
-        message = message + '\n*Neighbourhood:*' + this.getFilters.neighbourhood
+        message = message + '%0a*Neighbourhood:* ' + this.getFilters.neighbourhood
       }
 
       if (this.getFilters.type) {
-        message = message + '\n*Type:*' + this.getFilters.type
+        message = message + '%0a*Type:* ' + this.getFilters.type
       }
 
       if (this.getFilters.max) {
-        message = message + '\n*Max Rent:* KSh ' + this.getFilters.max
+        message = message + '%0a*Max Rent:*  KSh ' + this.getFilters.max
       }
 
       if (this.getFilters.payment && this.getFilters.max) {
@@ -83,10 +83,10 @@ export default {
       }
 
       if (this.getFilters.keywords) {
-        message = message + '\n*Keyowrds:*' + this.getFilters.keywords
+        message = message + '%0a*Keywords:* ' + this.getFilters.keywords
       }
 
-      message = message + '\nCould%20you%20please%20help%20me%20on%20with%20this?\nI%20used%20the%20' + this.getSearchType + '%20search%20functionality.'
+      message = message + '%0aCould%20you%20please%20help%20me%20on%20with%20this?\nI%20used%20the%20' + this.getSearchType + '%20search%20functionality.'
 
       const url = 'https://wa.me/+254731352350?text=' + message
       // alert(message)
