@@ -7,6 +7,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+#Zipped files
+*.zip
+
 # Runtime data
 pids
 *.pid
@@ -66,7 +69,7 @@ typings/
 .next
 
 # nuxt.js build output
-#.nuxt
+.nuxt
 
 # Nuxt generate
 dist

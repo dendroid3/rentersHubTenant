@@ -1,11 +1,11 @@
-export const AlertComponent = () => import('../..\\components\\AlertComponent.vue' /* webpackChunkName: "components/alert-component" */).then(c => wrapFunctional(c.default || c))
-export const EmptyComponent = () => import('../..\\components\\EmptyComponent.vue' /* webpackChunkName: "components/empty-component" */).then(c => wrapFunctional(c.default || c))
-export const FooterComponent = () => import('../..\\components\\FooterComponent.vue' /* webpackChunkName: "components/footer-component" */).then(c => wrapFunctional(c.default || c))
-export const LoadingWidget = () => import('../..\\components\\LoadingWidget.vue' /* webpackChunkName: "components/loading-widget" */).then(c => wrapFunctional(c.default || c))
-export const NavBar = () => import('../..\\components\\NavBar.vue' /* webpackChunkName: "components/nav-bar" */).then(c => wrapFunctional(c.default || c))
-export const HomePropertiesSection = () => import('../..\\components\\home\\HomePropertiesSection.vue' /* webpackChunkName: "components/home-properties-section" */).then(c => wrapFunctional(c.default || c))
-export const HomeSearchBlock = () => import('../..\\components\\home\\HomeSearchBlock.vue' /* webpackChunkName: "components/home-search-block" */).then(c => wrapFunctional(c.default || c))
-export const PropertiesPropertyCard = () => import('../..\\components\\properties\\PropertyCard.vue' /* webpackChunkName: "components/properties-property-card" */).then(c => wrapFunctional(c.default || c))
+export { default as AlertComponent } from '../..\\components\\AlertComponent.vue'
+export { default as EmptyComponent } from '../..\\components\\EmptyComponent.vue'
+export { default as FooterComponent } from '../..\\components\\FooterComponent.vue'
+export { default as LoadingWidget } from '../..\\components\\LoadingWidget.vue'
+export { default as NavBar } from '../..\\components\\NavBar.vue'
+export { default as HomePropertiesSection } from '../..\\components\\home\\HomePropertiesSection.vue'
+export { default as HomeSearchBlock } from '../..\\components\\home\\HomeSearchBlock.vue'
+export { default as PropertiesPropertyCard } from '../..\\components\\properties\\PropertyCard.vue'
 
 // nuxt/nuxt.js#8607
 function wrapFunctional(options) {

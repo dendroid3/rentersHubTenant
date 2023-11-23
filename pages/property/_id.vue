@@ -45,6 +45,11 @@
             </h4>
             <span>{{ getCurrentProperty.company_name }}</span> <br> <br>
 
+            <h4 class="mt-4">
+              Amount:
+            </h4>
+            <span>{{ getCurrentProperty.price + " / " + getCurrentProperty.payment}}</span> <br> <br>
+
             <v-btn block class="red white--text" small @click="toogleContactForm">
               Contact Landlord
             </v-btn> <br><br>

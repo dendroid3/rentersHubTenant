@@ -1,16 +1,20 @@
 [
   {
+    "name": "about",
+    "path": "/about",
+    "component": "C:\\\\xampp\\\\htdocs\\\\active\\\\renters\\\\tenant_nuxt\\\\pages\\\\about.vue",
+    "chunkName": "pages/about"
+  },
+  {
     "name": "index",
     "path": "/",
     "component": "C:\\\\xampp\\\\htdocs\\\\active\\\\renters\\\\tenant_nuxt\\\\pages\\\\index.vue",
-    "chunkName": "pages/index",
-    "_name": "_2b5cf975"
+    "chunkName": "pages/index"
   },
   {
     "name": "property-id",
     "path": "/property/:id?",
     "component": "C:\\\\xampp\\\\htdocs\\\\active\\\\renters\\\\tenant_nuxt\\\\pages\\\\property\\\\_id.vue",
-    "chunkName": "pages/property/_id",
-    "_name": "_260839a8"
+    "chunkName": "pages/property/_id"
   }
 ]

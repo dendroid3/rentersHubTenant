@@ -165,10 +165,7 @@
         {{ 'Available Properties' }}
       </h2>
       <h3 v-if="properties.properties" class="pl-4 ml-4 mb-4">
-        {{ "Page " + properties.properties.current_page + "(" }}
-        {{ properties.properties.data.length }}
-        {{ " out of " }}
-        {{ properties.properties.total + " properties )" }}
+        {{ "Page " + properties.properties.current_page }}
       </h3>
       <v-row
         v-if="properties.properties"
