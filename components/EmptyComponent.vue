@@ -56,10 +56,10 @@ export default {
 
   methods: {
     sendMessageToWhatsApp () {
-      let message = 'Hello.%20I%20am%20from%20your%20website%20and%20I%20need%20some%20more%20assistance.%0a'
+      let message = 'Hello.%20I%20am%20from%20the%20RentersHubwebsite%20and%20I%20need%20some%20more%20assistance.%0a'
 
       if (this.getFilters) {
-        message = message + 'I%20am%20searching%20for%20a%20property%20that%20meet%20this%20creterion: '
+        message = message + 'I%20am%20searching%20for%20a%20property%20that%20meets%20this%20creterion: '
       }
 
       if (this.getFilters.category) {
