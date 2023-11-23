@@ -48,7 +48,7 @@
           </a>
         </div>
         <div class="pointer">
-          <a href="https://wa.me/254731352350?text=Hello.%20Please%20help%20me%20find%20a%20house%20in%20your%20network." target="_black">
+          <a href="https://wa.me/+254731352350?text=Hello.%20Please%20help%20me%20find%20a%20house%20in%20your%20network." target="_black">
             <v-icon>
               mdi-whatsapp
             </v-icon>

@@ -88,7 +88,7 @@ export default {
 
       message = message + '\nCould%20you%20please%20help%20me%20on%20with%20this?\nI%20used%20the%20' + this.getSearchType + '%20search%20functionality.'
 
-      const url = 'https://wa.me/254731352350?text=' + message
+      const url = 'https://wa.me/+254731352350?text=' + message
       // alert(message)
       window.open(url)
     },

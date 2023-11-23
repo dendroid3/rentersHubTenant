@@ -270,7 +270,7 @@ export default {
       }
 
       if (channel === 'WhatsApp') {
-        url = 'https://wa.me/254' +
+        url = 'https://wa.me/+254' +
                 this.getCurrentProperty.contact +
                 '?text=I\'m%20interested%20in%20your%20property%20found%20on:%20https://rentershub.co.ke/property/' +
                 this.getCurrentProperty.id
