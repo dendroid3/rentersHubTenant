@@ -98,7 +98,7 @@
           <v-col class="pa-0 col-sm-6 col-12">
             <v-autocomplete
               id="neighbourhood_input"
-              v-model="neighbourhood"
+              v-model="filters.neighbourhood"
               :disabled="!categorySelection"
               clearable
               :loading="isTypingNeighbourhood || isFetchingNeighbourhood"
