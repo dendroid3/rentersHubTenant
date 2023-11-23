@@ -316,6 +316,9 @@ export default {
       if (this.filters.max) {
         data.max = this.filters.max
       }
+      if (this.filters.payment) {
+        data.payment = this.filters.payment
+      }
       if (this.filters.keywords) {
         data.keywords = this.filters.keywords
       }
