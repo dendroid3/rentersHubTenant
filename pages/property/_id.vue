@@ -41,7 +41,7 @@
             <span>{{ getCurrentProperty.contact.name }}</span> <br> <br> -->
 
             <h4 class="mt-4">
-              Company:
+              Managed By:
             </h4>
             <span>{{ getCurrentProperty.company_name }}</span> <br> <br>
 

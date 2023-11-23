@@ -56,7 +56,7 @@ export default {
 
   methods: {
     sendMessageToWhatsApp () {
-      let message = 'Hello.%20I%20am%20from%20the%20RentersHubwebsite%20and%20I%20need%20some%20more%20assistance.%0a'
+      let message = 'Hello.%20I%20am%20from%20the%20website,%20https://rentershub.co.ke%20and%20I%20need%20some%20more%20assistance.%0a%0a'
 
       if (this.getFilters) {
         message = message + 'I%20am%20searching%20for%20a%20property%20that%20meets%20this%20creterion: '
@@ -86,7 +86,7 @@ export default {
         message = message + '%0a*Keywords:* ' + this.getFilters.keywords
       }
 
-      message = message + '%0aCould%20you%20please%20help%20me%20on%20with%20this?%0aI%20used%20the%20' + this.getSearchType + '%20search%20functionality.'
+      message = message + '%0a%0aPlease%20find%20me%20the%20house.%20Thank you.'
 
       const url = 'https://wa.me/+254731352350?text=' + message
       // alert(message)
