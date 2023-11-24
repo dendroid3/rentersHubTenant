@@ -1,6 +1,7 @@
 <template>
   <div>
     <home-search-block />
+
     <home-properties-section />
   </div>
 </template>
