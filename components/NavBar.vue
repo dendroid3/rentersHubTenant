@@ -7,7 +7,7 @@
     <div
       id="logoDiv"
       class="d-flex align-center pointer white rounded pr-4 pt-1 pb-1"
-      @click="goTo('/')"
+      @click="goTo('/home')"
     >
       <v-img
         alt="Renters Hub Logo"
