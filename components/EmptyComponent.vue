@@ -1,46 +1,50 @@
 <template>
-  <div class="grey lighten-2 d-flex justify-center pa-4 rounded">
-    <section>
-      <div class="text-center">
-        <img
-          class="img"
-          cover
-          :src="require('../assets/components/empty.svg')"
-        >
-      </div>
-      <div>
+  <div>
+    <div class="grey lighten-2 d-flex justify-center pa-4 rounded">
+      <section>
+        <div class="text-center">
+          <img
+            class="img"
+            cover
+            :src="require('../assets/components/empty.svg')"
+          >
+        </div>
         {{ message }}
-      </div>
-      <div class="d-flex justify-center">
-        <v-spacer />
-        <v-btn
+      </section>
+    </div>
+    <div class="d-flex justify-center">
+      <v-spacer />
+      <v-btn
         :color="`#A6CE37`"
         small
         class="white--text"
-        @click="sendMessageToWhatsApp">
-          <v-icon
+        @click="sendMessageToWhatsApp"
+      >
+        <v-icon
           class="mr-2"
-          small>
-            mdi-whatsapp
-          </v-icon>
-          WhatsApp
-        </v-btn>
-        <v-spacer />
-        <v-btn
+          small
+        >
+          mdi-whatsapp
+        </v-icon>
+        WhatsApp
+      </v-btn>
+      <v-spacer />
+      <v-btn
         :color="`#A6CE37`"
         small
         class="white--text"
-        @click="call">
-          <v-icon
+        @click="call"
+      >
+        <v-icon
           class="mr-2"
-          small>
-            mdi-phone
-          </v-icon>
-          Call
-        </v-btn>
-        <v-spacer />
-      </div>
-    </section>
+          small
+        >
+          mdi-phone
+        </v-icon>
+        Call
+      </v-btn>
+      <v-spacer />
+    </div>
   </div>
 </template>
 <script>

@@ -31,7 +31,7 @@ export const getters = {
 }
 
 export const actions = {
-  setAlertMessage ({ commit }, data) {
+  setAlertMessage({ commit }, data) {
     commit('SET_ALERT_MESSAGE', data)
 
     setTimeout(() => {
@@ -39,50 +39,45 @@ export const actions = {
     }, 2000)
   },
 
-  async recordClick ({ commit }, data) {
+  async recordClick({ commit }, data) {
     try {
-      const res = await
-      axios.post(BASE_URL + 'record_click', data)
+      const res = await axios.post(BASE_URL + 'record_click', data)
       commit('SET_CLICK_RECORD', res.data)
     } catch (err) {
       console.log(err)
     }
   },
 
-  async fetchClicks ({ commit }, data) {
+  async fetchClicks({ commit }, data) {
     try {
-      const res = await
-      axios.post(BASE_URL + 'get_clicks', data)
+      const res = await axios.post(BASE_URL + 'get_clicks', data)
       commit('SET_CLICKS_RECORDS', res.data)
     } catch (err) {
       console.log(err)
     }
   },
 
-  async fetchSpecifiedClicks ({ commit }, data) {
+  async fetchSpecifiedClicks({ commit }, data) {
     try {
-      const res = await
-      axios.post(BASE_URL + 'get_specified_clicks', data)
+      const res = await axios.post(BASE_URL + 'get_specified_clicks', data)
       commit('SET_CLICKS_RECORDS', res.data)
     } catch (err) {
       console.log(err)
     }
   },
 
-  async fetchClicksStatistics ({ commit }) {
+  async fetchClicksStatistics({ commit }) {
     try {
-      const res = await
-      axios.get(BASE_URL + 'get_clicks_statistics')
+      const res = await axios.get(BASE_URL + 'get_clicks_statistics')
       commit('SET_CLICKS_STATISTICS', res.data)
     } catch (err) {
       console.log(err)
     }
   },
 
-  async setClickStatus ({ dispatch }, data) {
+  async setClickStatus({ dispatch }, data) {
     try {
-      const res = await
-      axios.post(BASE_URL + 'set_click_status', data)
+      const res = await axios.post(BASE_URL + 'set_click_status', data)
       dispatch('setAlertMessage', res.data, { root: true })
       dispatch('fetchClicksStatistics', null, { root: true })
     } catch (err) {
@@ -90,22 +85,20 @@ export const actions = {
     }
   },
 
-  async fetchLocations ({ commit }, data) {
+  async fetchLocations({ commit }, data) {
     try {
-      const res = await
-      axios.post(BASE_URL + 'location', data)
+      const res = await axios.post(BASE_URL + 'location', data)
       commit('SET_LOCATIONS', res.data)
     } catch (err) {
       console.log(err)
     }
   },
-  async fetchFilteredProperties ({ commit }, data) {
+  async fetchFilteredProperties({ commit }, data) {
     try {
       commit('SET_IS_FETCHINGPROPERTIES', true)
       const url = data.link ? data.link : BASE_URL + 'search'
 
-      const res = await
-      axios.post(url, data)
+      const res = await axios.post(url, data)
 
       commit('SET_SEARCH_TYPE', 'advanced')
       commit('SET_FILTERS', data)
@@ -117,14 +110,13 @@ export const actions = {
     }
   },
 
-  async fetchSimpleFilteredProperties ({ commit }, data) {
+  async fetchSimpleFilteredProperties({ commit }, data) {
     try {
       commit('SET_SEARCH_TYPE', 'simple')
       commit('SET_IS_FETCHINGPROPERTIES', true)
       commit('SET_FILTERS', data)
       const url = data.link ? data.link : BASE_URL + 'simple_search'
-      const res = await
-      axios.post(url, data)
+      const res = await axios.post(url, data)
       commit('SET_DISPLAY_VACANCIES', res.data)
       commit('SET_IS_FETCHINGPROPERTIES', false)
     } catch (err) {
@@ -133,24 +125,41 @@ export const actions = {
     }
   },
 
-  async fetchProperty ({ commit }, data) {
+  async fetchProperty({ commit }, data) {
     try {
       const res = await
-      axios.post(BASE_URL + 'property', data)
+        axios.post(BASE_URL + 'property', data)
       commit('SET_CURRENT_PROPERTY', res.data)
     } catch (err) {
       console.log(err)
     }
   },
 
-  setCurrentProperty ({ commit }, data) {
+  setCurrentProperty({ commit }, data) {
     commit('SET_CURRENT_PROPERTY', data)
+    return true
   },
 
-  async recordProspect ({ commit }, data) {
+  async fetchPropertyFeatures({ commit, getters }, data) {
     try {
       const res = await
-      axios.post(BASE_URL + 'record_prospect', data)
+        axios.post(BASE_URL + 'get_features', data)
+      console.log(res)
+      const features = res.data
+      const property = {
+        ...getters.getCurrentProperty,
+        features
+      }
+      commit('SET_CURRENT_PROPERTY', property)
+    } catch (err) {
+      console.log(err)
+    }
+  },
+
+  async recordProspect({ commit }, data) {
+    try {
+      const res = await
+        axios.post(BASE_URL + 'record_prospect', data)
       commit('SET_PROSPECT_RECORD', res.data)
     } catch (err) {
       console.log(err)

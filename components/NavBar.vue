@@ -4,9 +4,11 @@
     app
     color="#09308F"
   >
-    <div class="d-flex align-center pointer white rounded pr-4 pt-1 pb-1"
+    <div
       id="logoDiv"
-      @click="goTo('/')">
+      class="d-flex align-center pointer white rounded pr-4 pt-1 pb-1"
+      @click="goTo('/')"
+    >
       <v-img
         alt="Renters Hub Logo"
         class="shrink"
@@ -23,8 +25,8 @@
     <v-spacer />
 
     <v-btn
-      class="red white--text pr-4 pt-1 pb-1"
       id="postButton"
+      class="red white--text pr-4 pt-1 pb-1"
       href="https://landlords.rentershub.co.ke/account.php"
       text
     >

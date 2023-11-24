@@ -1,8 +1,9 @@
 <template>
   <div>
-    <div class="pa-4 wrapper">
+    <div class="px-4 pt-4 wrapper">
       <div id="top_div" />
       <section v-if="propertyIsAvailable">
+        <!-- {{ getCurrentProperty }} -->
         <v-row class="pa-4">
           <v-col class="col-md-8 col-12">
             <v-row class="d-flex justify-center mb-2 mt-1">
@@ -45,17 +46,19 @@
             </h4>
             <span>{{ getCurrentProperty.company_name }}</span> <br> <br>
 
-            <h4 class="mt-4">
+            <h4>
               Amount:
             </h4>
-            <span>{{ getCurrentProperty.price + " / " + getCurrentProperty.payment}}</span> <br> <br>
+            <span>{{ getCurrentProperty.price + " / " + getCurrentProperty.payment }}</span> <br> <br>
 
-            <v-btn block class="red white--text" small @click="toogleContactForm">
+            <v-btn class="red white--text contact-button" @click="toogleContactForm">
               Contact Landlord
             </v-btn> <br><br>
 
             <h4>Description:</h4>
             <span v-html="description" />
+            <!-- <h4>Featureswertyuiytrewertyu:</h4> -->
+
           </v-col>
         </v-row>
         <div v-if="show_contact_form" class="contact grey lighten-2 rounded">
@@ -155,7 +158,7 @@ export default {
 
   head () {
     if (process.browser) {
-      return { title: this.getCurrentProperty.name }
+      return { title: this.getCurrentProperty ? this.getCurrentProperty.name : 'View Property' }
     }
   },
 
@@ -235,7 +238,7 @@ export default {
   }),
 
   methods: {
-    ...mapActions(['fetchProperty', 'recordProspect', 'recordClick']),
+    ...mapActions(['fetchProperty', 'recordProspect', 'recordClick', 'setCurrentProperty', 'fetchPropertyFeatures']),
 
     reduceImageIndex () {
       if (this.image_in_view > 0) {
@@ -266,7 +269,7 @@ export default {
       let url = null
 
       if (channel === 'Phone') {
-        url = 'tel:0' + this.getCurrentProperty.contact
+        url = 'tel:+254' + this.getCurrentProperty.contact
       }
 
       if (channel === 'WhatsApp') {
@@ -330,9 +333,14 @@ export default {
       const propertyId = this.$router.history.current.params
       if (this.getCurrentProperty) {
         if (this.getCurrentProperty.id === propertyId) {
-          this.propertyIsAvailable = true
-          this.goToTop()
-          return
+          if (this.getCurrentProperty.features) {
+            const timeout = setTimeout(() => {
+              this.propertyIsAvailable = true
+              this.goToTop()
+              clearTimeout(timeout)
+            }, 10)
+            return
+          }
         }
       }
 
@@ -343,9 +351,21 @@ export default {
         ))
 
         if (propertyIsAvailable[0]) {
-          this.setCurrentProperty(propertyIsAvailable[0])
-          this.propertyIsAvailable = true
-          this.goToTop()
+          this.setCurrentProperty(propertyIsAvailable[0]).then(() => {
+            // fetch features
+            if (!this.getCurrentProperty.features) {
+              const data = {
+                propertyId
+              }
+              this.fetchPropertyFeatures(data).then(() => {
+                const timeout = setTimeout(() => {
+                  this.propertyIsAvailable = true
+                  this.goToTop()
+                  clearTimeout(timeout)
+                }, 10)
+              })
+            }
+          })
           return
         }
       }
@@ -355,21 +375,34 @@ export default {
       }
 
       this.fetchProperty(data).then(() => {
-        this.propertyIsAvailable = true
-        this.goToTop()
+        const timeout = setTimeout(() => {
+          this.propertyIsAvailable = true
+          this.goToTop()
+          clearTimeout(timeout)
+        }, 10)
       })
     }
   },
 
-  created () {
-    this.gofetchProperty()
-    // check whether that property is in the properties array
-    // if not, fetch
+  mounted () {
+    // if (process.browser) {
+    const timeout = setTimeout(() => {
+      this.gofetchProperty()
+      clearTimeout(timeout)
+    }, 0)
+    // }
   }
 }
 </script>
 <style lang="css" scoped>
     @media only screen and (max-width: 960px) {
+        .contact-button{
+          position: fixed;
+          height: 2rem;
+          bottom: 0.5rem;
+          left: 0.5rem;
+          right: 0.5rem;
+        }
         .contact{
             top: 50%;
             left: 5%;
@@ -386,6 +419,13 @@ export default {
             left: 50%;
             padding: 0 0.5rem;
             transform: translate(-12.5rem, -12.5rem)
+        }
+        .contact-button{
+          position: fixed;
+          height: 2rem;
+          bottom: 0.5rem;
+          left: 65%;
+          right: 0.5rem;
         }
     }
     .contact{
@@ -412,6 +452,7 @@ export default {
     }
     .wrapper{
         overflow-x: hidden;
+        padding-bottom: 3rem;
     }
     .image-preview-strip{
         overflow-x: auto;
