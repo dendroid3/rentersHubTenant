@@ -58,7 +58,6 @@
             <h4>Description:</h4>
             <span v-html="description" />
             <!-- <h4>Featureswertyuiytrewertyu:</h4> -->
-
           </v-col>
         </v-row>
         <div v-if="show_contact_form" class="contact grey lighten-2 rounded">
