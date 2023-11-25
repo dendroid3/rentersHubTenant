@@ -1,30 +1,26 @@
 [
   {
-    "name": "about",
-    "path": "/about",
-    "component": "C:\\\\xampp\\\\htdocs\\\\active\\\\renters\\\\tenant_nuxt\\\\pages\\\\about.vue",
-    "chunkName": "pages/about",
-    "_name": "_0ba51eb0"
+    "name": "admin",
+    "path": "/admin",
+    "component": "C:\\\\xampp\\\\htdocs\\\\active\\\\renters\\\\tenant_nuxt\\\\pages\\\\admin.vue",
+    "chunkName": "pages/admin"
   },
   {
     "name": "home",
     "path": "/home",
     "component": "C:\\\\xampp\\\\htdocs\\\\active\\\\renters\\\\tenant_nuxt\\\\pages\\\\home.vue",
-    "chunkName": "pages/home",
-    "_name": "_b85088e8"
+    "chunkName": "pages/home"
   },
   {
     "name": "index",
     "path": "/",
     "component": "C:\\\\xampp\\\\htdocs\\\\active\\\\renters\\\\tenant_nuxt\\\\pages\\\\index.vue",
-    "chunkName": "pages/index",
-    "_name": "_2b5cf975"
+    "chunkName": "pages/index"
   },
   {
     "name": "property-id",
     "path": "/property/:id?",
     "component": "C:\\\\xampp\\\\htdocs\\\\active\\\\renters\\\\tenant_nuxt\\\\pages\\\\property\\\\_id.vue",
-    "chunkName": "pages/property/_id",
-    "_name": "_260839a8"
+    "chunkName": "pages/property/_id"
   }
 ]

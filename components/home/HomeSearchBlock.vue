@@ -99,17 +99,24 @@
           }"
         >
           <v-col class="pa-0 col-sm-6 col-12">
-            <v-autocomplete
+            <!-- <v-autocomplete
               id="neighbourhood_input"
-              v-model="filters.neighbourhood"
               :disabled="!categorySelection"
               clearable
               :loading="isTypingNeighbourhood || isFetchingNeighbourhood"
-              placeholder="neighbourhood"
+              placeholder=""
               outlined
               class="px-4 py-0"
               :items="neighbourhoods"
               @keyup="setIsTypingNeighbourhood"
+            /> -->
+            <v-text-field
+              v-model="filters.neighbourhood"
+              placeholder="neighbourhood"
+              clearable
+              :disabled="!categorySelection"
+              outlined
+              class="px-4 py-0"
             />
           </v-col>
           <v-col class="pa-0 col-sm-6 col-12">
@@ -223,7 +230,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters(['getFilters', 'getLocations']),
+    ...mapGetters(['getFilters']),
 
     canSubmit () {
       if (!this.categorySelection && (!this.filters.county || !this.filters.type || !this.filters.min || !this.filters.max || !this.filters.keywords)) {
@@ -232,23 +239,23 @@ export default {
       return true
     },
 
-    neighbourhoods () {
-      if (!this.getLocations) {
-        return ['Type in a location']
-      }
+    // neighbourhoods () {
+    //   if (!this.getLocations) {
+    //     return ['Type in a location']
+    //   }
 
-      if (!this.getLocations[0]) {
-        return
-      }
+    //   if (!this.getLocations[0]) {
+    //     return
+    //   }
 
-      const neighbourhoods = []
+    //   const neighbourhoods = []
 
-      this.getLocations.forEach((neighbourhood) => {
-        neighbourhoods.push(neighbourhood.name)
-      })
+    //   this.getLocations.forEach((neighbourhood) => {
+    //     neighbourhoods.push(neighbourhood.name)
+    //   })
 
-      return neighbourhoods
-    },
+    //   return neighbourhoods
+    // },
 
     house_types () {
       const types = {

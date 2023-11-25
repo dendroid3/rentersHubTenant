@@ -11,20 +11,25 @@
                 {{ getCurrentProperty.name }}
               </h3>
             </v-row>
-            <v-img
-              style="position: relative;"
-              :src="image_source"
-              cover
-              class="back"
-            >
+            <div class="grey lighten-4 text-center" style="max-height: 20rem; position: relative;">
+              <img
+                v-for="(image, index) in getCurrentProperty.property_images"
+                :key="index"
+                :src="getImageSource(image.url)"
+                alt="Property Image"
+                :class="{
+                  'd-none': index != image_in_view
+                }"
+                style="max-height: 20rem;"
+              >
+              </img>
               <v-icon class="rounded blue lighten-4" style="position: absolute; top: 50%; left: 0.25rem;" @click="reduceImageIndex()">
                 mdi-arrow-left
               </v-icon>
               <v-icon class="rounded blue lighten-4" style="position: absolute; top: 50%; right: 0.25rem;" @click="addImageIndex()">
                 mdi-arrow-right
               </v-icon>
-            </v-img>
-
+            </div>
             <div class="d-flex justify-center mt-1 image-preview-strip">
               <div v-for="(image, index) in getCurrentProperty.property_images" :key="image.id" class="d-flex col-md-1 col-2 " @click="showImage(index)">
                 <v-img
@@ -38,9 +43,6 @@
             </div>
           </v-col>
           <v-col class="col-md-4 col-12">
-            <!-- <h4>Managed by:</h4>
-            <span>{{ getCurrentProperty.contact.name }}</span> <br> <br> -->
-
             <h4 class="mt-4">
               Managed By:
             </h4>
@@ -53,11 +55,27 @@
 
             <v-btn class="red white--text contact-button" @click="toogleContactForm">
               Contact Landlord
-            </v-btn> <br><br>
+            </v-btn> <br>
 
             <h4>Description:</h4>
             <span v-html="description" />
             <!-- <h4>Featureswertyuiytrewertyu:</h4> -->
+          </v-col>
+          <v-col v-if="getCurrentProperty.features[0]" class="col-12">
+            <h3 class="text-center mt-4">
+              Features:
+            </h3>
+            <p
+              v-for="(feature, index) in getCurrentProperty.features"
+              :key="index"
+              class="blue lighten-4 rounded pa-4"
+              :class="{
+                'd-none': !feature.name
+              }"
+              style=" font-size: 1.25rem; font-weight: 600;"
+            >
+              {{ feature.name }}
+            </p>
           </v-col>
         </v-row>
         <div v-if="show_contact_form" class="contact grey lighten-2 rounded">
@@ -100,6 +118,13 @@
                     </v-btn>
                   </v-col>
                 </v-row>
+              </v-col>
+
+              <v-col class="col-12 d-flex text-center">
+                <v-icon class="red--text">
+                  mdi-alert
+                </v-icon>
+                Do NOT send any money before viewing the property first.
               </v-col>
             </section>
             <section v-else class="full-width">
@@ -257,8 +282,7 @@ export default {
 
     perpToRecordClick (channel) {
       const data = {
-        prospect_id: this.getProspectRecord.id,
-        company_id: this.getCurrentProperty.company_id,
+        prospectId: this.getProspectRecord.id,
         propertyId: this.getCurrentProperty.id,
         channel
       }
@@ -397,6 +421,7 @@ export default {
     @media only screen and (max-width: 960px) {
         .contact-button{
           position: fixed;
+          z-index: 9999;
           height: 2rem;
           bottom: 0.5rem;
           left: 0.5rem;
@@ -421,6 +446,7 @@ export default {
         }
         .contact-button{
           position: fixed;
+          z-index: 9999;
           height: 2rem;
           bottom: 0.5rem;
           left: 65%;

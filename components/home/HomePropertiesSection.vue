@@ -159,36 +159,53 @@
         </v-col>
       </v-row>
     </div>
-
-    <div v-if="!is_fecthing_properties">
+    <div>
       <h2 class="pl-4 ml-4">
         {{ 'Available Properties' }}
       </h2>
-      <h3 v-if="properties.properties" class="pl-4 ml-4 mb-4">
-        {{ "Page " + properties.properties.current_page }}
-      </h3>
-      <v-row
-        v-if="properties.properties"
-        class="back"
-      >
-        <v-row v-if="properties" class="col-md-10 offset-md-1">
-          <v-col
-            v-if="properties.properties.data.length < 1"
-            class="col-12 d-flex justify-center"
-          >
-            <empty-component :message="`Landlords and Property Agents are yet to post such a house in that area. Please contact Renters Hub office for a further assistance.`" />
-          </v-col>
-          <v-col
-            v-for="property in properties.properties.data"
-            v-else
-            :key="property.id"
-            class="col-md-3 col-12"
-          >
-            <property-card :property="property" />
-          </v-col>
+      <section v-if="!isFetchingProperties">
+        <h3 v-if="properties.properties" class="pl-4 ml-4 mb-4">
+          {{ "Page " + properties.properties.current_page }}
+        </h3>
+        <v-row
+          v-if="properties.properties"
+          class="back"
+        >
+          <v-row v-if="properties" class="col-md-10 offset-md-1">
+            <v-col
+              v-if="properties.properties.data.length < 1"
+              class="col-12 d-flex justify-center"
+            >
+              <empty-component :message="`Landlords and Property Agents are yet to post such a house in that area. Please contact Renters Hub office for a further assistance.`" />
+            </v-col>
+            <v-col
+              v-for="property in properties.properties.data"
+              v-else
+              :key="property.id"
+              class="col-md-3 col-12"
+            >
+              <properties-property-card :property="property" />
+            </v-col>
+          </v-row>
         </v-row>
+      </section>
+      <v-row v-if="isFetchingProperties" class="col-md-10 offset-md-1">
+        <v-col
+          v-for="(property, index) in filters.pagination"
+          :key="index"
+          class="col-md-3 col-12"
+        >
+          <properties-property-skeleton />
+        </v-col>
       </v-row>
-
+      <!-- <infinite-loading
+        spinner="spiral"
+        @infinite="infiniteScroll"
+      ></infinite-loading> -->
+      <infinite-scroll
+        v-if="!isFetchingProperties"
+        @InfiniteScrollerLoaded="infiniteScroll()"
+      />
       <div v-if="pagination_links" class="mt-4" style="overflow-x: auto; ">
         <div
           class="d-flex"
@@ -221,26 +238,13 @@
         </div>
       </div>
     </div>
-    <div v-else>
-      <loading-widget :message="`Feching Properties`" />
-    </div>
   </div>
 </template>
 <script>
 import { mapActions, mapGetters } from 'vuex'
 
-import PropertyCard from '../properties/PropertyCard'
-import LoadingWidget from '../LoadingWidget'
-// import EmptyComponent from '../EmptyComponent'
-
 export default {
   name: 'PropertiesSection',
-
-  components: {
-    PropertyCard,
-    LoadingWidget
-    // EmptyComponent
-  },
 
   filters: {
     toSentenseCase (string) {
@@ -352,12 +356,19 @@ export default {
   methods: {
     ...mapActions(['fetchFilteredProperties', 'fetchSimpleFilteredProperties']),
 
+    infiniteScroll () {
+      this.addToProperties = true
+      alert('sa')
+      this.prepForSearch()
+    },
+
     goToPage (url) {
       this.pageUrl = url
     },
 
     changeOrder (order) {
       this.pageUrl = null
+      this.addToProperties = false
       this.showOrder = false
       this.showPagination = false
       this.selectedOrder = order
@@ -371,6 +382,7 @@ export default {
 
     changePagination (pagination) {
       this.pageUrl = null
+      this.addToProperties = false
       this.showOrder = false
       this.showPagination = false
       this.selectedPagination = pagination
@@ -384,6 +396,7 @@ export default {
 
     removeFilter (index) {
       this.pageUrl = null
+      this.addToProperties = false
       this.showOrder = false
       this.showPagination = false
 
@@ -395,6 +408,7 @@ export default {
 
     removeKeyword (index) {
       this.pageUrl = null
+      this.addToProperties = false
       this.showOrder = false
       this.showPagination = false
 
@@ -414,21 +428,30 @@ export default {
     },
 
     prepForSearch () {
-      this.goToTop()
+      // this.goToTop()
 
       const data = this.filterData
       if (this.pageUrl) {
         data.link = this.pageUrl
       }
 
+      if (this.addToProperties) {
+        data.add = true
+        data.next = true
+      }
+
       setTimeout(() => {
         if (this.getSearchType === 'advanced') {
           this.fetchFilteredProperties(data).then(() => {
-            this.goToTop()
+            if (!this.addToProperties) {
+              this.goToTop()
+            }
           })
         } else {
           this.fetchSimpleFilteredProperties(data).then(() => {
-            this.goToTop()
+            if (!this.addToProperties) {
+              this.goToTop()
+            }
           })
         }
       }, 0)

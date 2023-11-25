@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-// const BASE_URL = 'http://localhost:8000/api/'
-const BASE_URL = 'https://api.rentershub.co.ke/api/'
+const BASE_URL = 'http://localhost:8000/api/'
+// const BASE_URL = 'https://api.rentershub.co.ke/api/'
 
 export const state = () => ({
   alertMessage: null,
@@ -104,21 +104,41 @@ export const actions = {
       commit('SET_FILTERS', data)
       commit('SET_DISPLAY_VACANCIES', res.data)
       commit('SET_IS_FETCHINGPROPERTIES', false)
+      console.log(res)
     } catch (err) {
       commit('SET_IS_FETCHINGPROPERTIES', false)
       console.log(err)
     }
   },
 
-  async fetchSimpleFilteredProperties ({ commit }, data) {
+  async fetchSimpleFilteredProperties ({ commit, getters }, data) {
     try {
       commit('SET_SEARCH_TYPE', 'simple')
       commit('SET_IS_FETCHINGPROPERTIES', true)
       commit('SET_FILTERS', data)
-      const url = data.link ? data.link : BASE_URL + 'simple_search'
+      let url = data.link ? data.link : BASE_URL + 'simple_search'
+      if (data.next) {
+        url = getters.getDisplayProperties.properties.links.filter(link => (
+          link.label === 'Next &raquo;'
+        ))[0].url
+      }
+
       const res = await axios.post(url, data)
-      commit('SET_DISPLAY_VACANCIES', res.data)
+
+      if (data.next) {
+        const properties = res.data.properties.data
+        const allProperties = {
+          ...getters.getDisplayProperties.properties.data,
+          properties
+        }
+        const fullRes = res
+        fullRes.data.properties.data = allProperties
+        commit('SET_DISPLAY_VACANCIES', fullRes)
+      } else {
+        commit('SET_DISPLAY_VACANCIES', res.data)
+      }
       commit('SET_IS_FETCHINGPROPERTIES', false)
+      console.log(res)
     } catch (err) {
       commit('SET_IS_FETCHINGPROPERTIES', false)
       console.log(err)
@@ -130,6 +150,7 @@ export const actions = {
       const res = await
       axios.post(BASE_URL + 'property', data)
       commit('SET_CURRENT_PROPERTY', res.data)
+      console.log(res)
     } catch (err) {
       console.log(err)
     }
@@ -151,6 +172,7 @@ export const actions = {
         features
       }
       commit('SET_CURRENT_PROPERTY', property)
+      console.log(res)
     } catch (err) {
       console.log(err)
     }
