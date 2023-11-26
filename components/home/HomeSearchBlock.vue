@@ -21,7 +21,7 @@
         />
       </button>
     </v-row>
-    <v-row class="no-gutters text--center align-center d-flex justify-center mt-4">
+    <!-- <v-row class="no-gutters text--center align-center d-flex justify-center mt-4">
       <v-btn
         small
         class="ml-4 white--text"
@@ -34,7 +34,7 @@
       >
         {{ isSearchBlockOpen ? 'close' : 'Advanced Search' }}
       </v-btn>
-    </v-row>
+    </v-row> -->
     <section
       v-show="isSearchBlockOpen"
       id="search-block"
