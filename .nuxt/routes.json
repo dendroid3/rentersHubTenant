@@ -3,24 +3,28 @@
     "name": "admin",
     "path": "/admin",
     "component": "C:\\\\xampp\\\\htdocs\\\\active\\\\renters\\\\tenant_nuxt\\\\pages\\\\admin.vue",
-    "chunkName": "pages/admin"
+    "chunkName": "pages/admin",
+    "_name": "_5ccc4d72"
   },
   {
     "name": "home",
     "path": "/home",
     "component": "C:\\\\xampp\\\\htdocs\\\\active\\\\renters\\\\tenant_nuxt\\\\pages\\\\home.vue",
-    "chunkName": "pages/home"
+    "chunkName": "pages/home",
+    "_name": "_b85088e8"
   },
   {
     "name": "index",
     "path": "/",
     "component": "C:\\\\xampp\\\\htdocs\\\\active\\\\renters\\\\tenant_nuxt\\\\pages\\\\index.vue",
-    "chunkName": "pages/index"
+    "chunkName": "pages/index",
+    "_name": "_2b5cf975"
   },
   {
     "name": "property-id",
     "path": "/property/:id?",
     "component": "C:\\\\xampp\\\\htdocs\\\\active\\\\renters\\\\tenant_nuxt\\\\pages\\\\property\\\\_id.vue",
-    "chunkName": "pages/property/_id"
+    "chunkName": "pages/property/_id",
+    "_name": "_260839a8"
   }
 ]

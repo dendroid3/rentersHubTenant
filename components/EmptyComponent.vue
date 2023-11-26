@@ -54,7 +54,7 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'EmptyComponent',
 
-  props: ['message', 'hideButtons'],
+  props: ['message', 'searched', 'hideButton'],
 
   computed: {
     ...mapGetters(['getFilters', 'getSearchType'])
@@ -62,7 +62,11 @@ export default {
 
   methods: {
     sendMessageToWhatsApp () {
-      let message = 'Hello.%20I%20am%20from%20the%20website,%20https://rentershub.co.ke%20and%20I%20need%20some%20more%20assistance.%0a%0a'
+      let message = 'Hello.%20I%20am%20from%20the%20website,%20https://rentershub.co.ke%20and%20I%20need%20some%20more%20assistance.%0a'
+
+      if(this.searched){
+        message = message + 'I%20have%20already%20seen%20some%20results%20they%20did%20not%20match%20exactly%20what%20I%20wanted.%0a%0a'
+      }
 
       if (this.getFilters) {
         message = message + 'I%20am%20searching%20for%20a%20property%20that%20meets%20this%20creterion: '

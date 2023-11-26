@@ -99,17 +99,6 @@
           }"
         >
           <v-col class="pa-0 col-sm-6 col-12">
-            <!-- <v-autocomplete
-              id="neighbourhood_input"
-              :disabled="!categorySelection"
-              clearable
-              :loading="isTypingNeighbourhood || isFetchingNeighbourhood"
-              placeholder=""
-              outlined
-              class="px-4 py-0"
-              :items="neighbourhoods"
-              @keyup="setIsTypingNeighbourhood"
-            /> -->
             <v-text-field
               v-model="filters.neighbourhood"
               placeholder="neighbourhood"

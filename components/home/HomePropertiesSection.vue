@@ -45,7 +45,7 @@
             <div v-if="filterData" class="text-center d-flex justify-center" style="overflow-x: auto; width: 100%;">
               <span v-for="(filter, index) in filterData" :key="index" class="d-flex">
                 <div
-                  v-if="index != 'pagination' && index != 'order' && filter != null && index != 'keywords' && index != 'includeAllKeyWords' && index != 'link'"
+                  v-if="index != 'pagination' && index != 'order' && filter != null && index != 'keywords' && index != 'includeAllKeyWords' && index != 'link' && index != 'next' && index != 'add'"
                   class="filter-span main-color-2 mx-1 lighten-2 pointer"
                 >
                   {{ (index +": " + filter) | toSentenseCase }}
@@ -163,10 +163,7 @@
       <h2 class="pl-4 ml-4">
         {{ 'Available Properties' }}
       </h2>
-      <section v-if="!isFetchingProperties">
-        <h3 v-if="properties.properties" class="pl-4 ml-4 mb-4">
-          {{ "Page " + properties.properties.current_page }}
-        </h3>
+      <section>
         <v-row
           v-if="properties.properties"
           class="back"
@@ -178,35 +175,43 @@
             >
               <empty-component :message="`Landlords and Property Agents are yet to post such a house in that area. Please contact Renters Hub office for a further assistance.`" />
             </v-col>
-            <v-col
-              v-for="property in properties.properties.data"
-              v-else
-              :key="property.id"
-              class="col-md-3 col-12"
-            >
-              <properties-property-card :property="property" />
-            </v-col>
           </v-row>
         </v-row>
       </section>
-      <v-row v-if="isFetchingProperties" class="col-md-10 offset-md-1">
+      <v-row class="col-md-10 offset-md-1 col-12"
+        :class="{
+          'ma-0': ((!$vuetify.breakpoint.md && !$vuetify.breakpoint.xl && !$vuetify.breakpoint.lg))
+        }">
         <v-col
-          v-for="(property, index) in filters.pagination"
+          v-for="(property, index) in (properties.properties) ? properties.properties.data : null"
+          :key="index"
+          style="position: relative; z-index: 1;"
+          class="col-md-3 col-12"
+        >
+          <properties-property-card :property="property" />
+        </v-col>
+        <v-col
+          v-if="isFetchingProperties"
+          v-for="(property, index) in (($vuetify.breakpoint.md || $vuetify.breakpoint.xl || $vuetify.breakpoint.lg) ? 4 : 1)"
           :key="index"
           class="col-md-3 col-12"
         >
           <properties-property-skeleton />
         </v-col>
+        <div v-if="isAtEndOfResults">
+          <empty-component :message="`It appears like that is all we have to match your search. Contact our customer care for further assistance`" :searched="true"/>
+        </div>
       </v-row>
-      <!-- <infinite-loading
-        spinner="spiral"
-        @infinite="infiniteScroll"
-      ></infinite-loading> -->
       <infinite-scroll
         v-if="!isFetchingProperties"
         @InfiniteScrollerLoaded="infiniteScroll()"
       />
-      <div v-if="pagination_links" class="mt-4" style="overflow-x: auto; ">
+      <div class="go-top d-flex align-center justify-center red" @click="goToTop">
+        <v-icon class="white--text">
+          mdi-arrow-up
+        </v-icon>
+      </div>
+      <!-- <div v-if="pagination_links" class="mt-4" style="overflow-x: auto; ">
         <div
           class="d-flex"
           :class="{
@@ -236,7 +241,7 @@
             </span>
           </span>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -299,14 +304,6 @@ export default {
       return this.$store.getters.getDisplayProperties
     },
 
-    is_fecthing_properties () {
-      if (!this.isFetchingProperties) {
-        return false
-      }
-
-      return this.isFetchingProperties
-    },
-
     keywords () {
       if (!this.filterData) {
         return []
@@ -318,21 +315,21 @@ export default {
       return this.filterData.keywords.split(',')
     },
 
-    pagination_links () {
-      if (!this.getDisplayProperties) {
-        return
-      }
-      if (!this.getDisplayProperties.properties) {
-        return
-      }
-      const links = []
-      this.getDisplayProperties.properties.links.forEach((link) => {
-        link.previous = link.label === '&laquo; Previous'
-        link.next = link.label === 'Next &raquo;'
-        links.push(link)
-      })
-      return links
-    }
+    // pagination_links () {
+    //   if (!this.getDisplayProperties) {
+    //     return
+    //   }
+    //   if (!this.getDisplayProperties.properties) {
+    //     return
+    //   }
+    //   const links = []
+    //   this.getDisplayProperties.properties.links.forEach((link) => {
+    //     link.previous = link.label === '&laquo; Previous'
+    //     link.next = link.label === 'Next &raquo;'
+    //     links.push(link)
+    //   })
+    //   return links
+    // }
   },
 
   data: () => ({
@@ -350,7 +347,9 @@ export default {
     selectedPagination: 10,
     filterData: null,
     includeAllKeyWords: null,
-    pageUrl: null
+    pageUrl: null,
+    isAtEndOfResults: false,
+    addToProperties: false
   }),
 
   methods: {
@@ -358,7 +357,6 @@ export default {
 
     infiniteScroll () {
       this.addToProperties = true
-      alert('sa')
       this.prepForSearch()
     },
 
@@ -368,6 +366,7 @@ export default {
 
     changeOrder (order) {
       this.pageUrl = null
+      this.isAtEndOfResults = false
       this.addToProperties = false
       this.showOrder = false
       this.showPagination = false
@@ -382,6 +381,7 @@ export default {
 
     changePagination (pagination) {
       this.pageUrl = null
+      this.isAtEndOfResults = false
       this.addToProperties = false
       this.showOrder = false
       this.showPagination = false
@@ -396,6 +396,7 @@ export default {
 
     removeFilter (index) {
       this.pageUrl = null
+      this.isAtEndOfResults = false
       this.addToProperties = false
       this.showOrder = false
       this.showPagination = false
@@ -408,6 +409,7 @@ export default {
 
     removeKeyword (index) {
       this.pageUrl = null
+      this.isAtEndOfResults = false
       this.addToProperties = false
       this.showOrder = false
       this.showPagination = false
@@ -436,8 +438,15 @@ export default {
       }
 
       if (this.addToProperties) {
+
+        if (this.getDisplayProperties.properties.current_page === this.getDisplayProperties.properties.last_page) {
+          this.isAtEndOfResults = true
+          return
+        }
+
         data.add = true
         data.next = true
+
       }
 
       setTimeout(() => {
@@ -455,6 +464,8 @@ export default {
           })
         }
       }, 0)
+
+
     },
 
     goToTop () {
@@ -479,6 +490,15 @@ export default {
 }
 </script>
 <style lang="css" scoped>
+.go-top{
+  position: fixed;
+  bottom: 0.5rem;
+  right: 0.5rem;
+  height: 4rem;
+  width: 4rem;
+  z-index: 9999;
+  border-radius: 50%;
+}
 .pagination-link{
   padding: 0 0.5rem;
   margin: 0 0.1rem;

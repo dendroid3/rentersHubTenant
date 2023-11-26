@@ -1,55 +1,56 @@
 <template>
-  <div class="back mx-auto">
-    <v-card
-      class="back mx-auto"
-      max-width="344"
-      hover
-      @click="goToProperty"
-    >
-      <v-img
-        :src="image_source"
-        height="200px"
-        cover
-        class="back preview-image"
+  <nuxt-link :to="`/property/` + property.id">
+    <div class="back mx-auto">
+      <v-card
+        class="back mx-auto"
+        max-width="344"
+        hover
       >
-        <div class="landlord-initials d-flex align-center justify-center">
-          <v-img
-            height="10"
-            width="10"
-            :src="require('../../assets/logo.png')"
-          />
-        </div>
-      </v-img>
-      <p class="property-name mb-0 text-center grey lighten-4">
-        {{ property.name.toUpperCase() }}
-      </p>
-      <v-card-subtitle class="grey lighten-4 sub-title">
-        <v-icon
-          class="red--text"
-          small
+        <v-img
+          :src="image_source"
+          height="200px"
+          cover
+          class="back preview-image"
         >
-          mdi-map-marker
-        </v-icon>
-        {{ property.neighbourhood + ", " + property.county }}
-        <br>
-        <v-icon
-          class="black-text"
-          small
-        >
-          mdi-home
-        </v-icon>
-        {{ property.type }}
-        <br>
-        <v-icon
-          class="black--text"
-          small
-        >
-          mdi-currency-usd
-        </v-icon>
-        {{ property.price + "/" + property.payment }}
-      </v-card-subtitle>
-    </v-card>
-  </div>
+          <div class="landlord-initials d-flex align-center justify-center">
+            <v-img
+              height="10"
+              width="10"
+              :src="require('../../assets/logo.png')"
+            />
+          </div>
+        </v-img>
+        <p class="property-name mb-0 text-center grey lighten-4">
+          {{ property.name.toUpperCase() }}
+        </p>
+        <v-card-subtitle class="grey lighten-4 sub-title">
+          <v-icon
+            class="red--text"
+            small
+          >
+            mdi-map-marker
+          </v-icon>
+          {{ property.neighbourhood + ", " + property.county }}
+          <br>
+          <v-icon
+            class="black-text"
+            small
+          >
+            mdi-home
+          </v-icon>
+          {{ property.type }}
+          <br>
+          <v-icon
+            class="black--text"
+            small
+          >
+            mdi-currency-usd
+          </v-icon>
+          {{ property.price + "/" + property.payment }}
+        </v-card-subtitle>
+      </v-card>
+    </div>
+  </nuxt-link>
 </template>
 <script>
 import { mapActions } from 'vuex'
@@ -80,12 +81,7 @@ export default {
   },
 
   methods: {
-    ...mapActions(['setCurrentProperty']),
-
-    goToProperty () {
-      this.setCurrentProperty(this.property)
-      this.$router.push('/property/' + this.property.id)
-    }
+    ...mapActions(['setCurrentProperty'])
   }
 }
 </script>
@@ -118,5 +114,8 @@ export default {
     right: 1rem;
     border: 1px solid #09308F;
     z-index: 9999;
+  }
+  a{
+    text-decoration: none;
   }
 </style>
