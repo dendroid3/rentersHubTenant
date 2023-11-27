@@ -482,7 +482,7 @@ export default {
 
   },
 
-  mounted () {
+  beforeMount () {
     this.boot()
   }
 
