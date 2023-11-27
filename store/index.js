@@ -131,7 +131,7 @@ export const actions = {
 
         properties.forEach(property => {
           allProperties.push(property)
-        });
+        })
 
         const fullRes = res
         fullRes.data.properties.data = allProperties

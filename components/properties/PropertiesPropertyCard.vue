@@ -40,12 +40,12 @@
           </v-icon>
           {{ property.type }}
           <br>
-          <v-icon
+          <span
             class="black--text"
-            small
+            style=""
           >
-            mdi-currency-usd
-          </v-icon>
+            Ksh.
+          </span>
           {{ property.price + "/" + property.payment }}
         </v-card-subtitle>
       </v-card>
