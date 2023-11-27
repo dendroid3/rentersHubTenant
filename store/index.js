@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-const BASE_URL = 'http://localhost:8000/api/'
-// const BASE_URL = 'https://api.rentershub.co.ke/api/'
+// const BASE_URL = 'http://localhost:8000/api/'
+const BASE_URL = 'https://api.rentershub.co.ke/api/'
 
 export const state = () => ({
   alertMessage: null,
@@ -122,6 +122,8 @@ export const actions = {
           link.label === 'Next &raquo;'
         ))[0].url
       }
+
+      alert(res.data)
 
       const res = await axios.post(url, data)
 
