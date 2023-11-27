@@ -61,7 +61,7 @@
             <span v-html="description" />
             <!-- <h4>Featureswertyuiytrewertyu:</h4> -->
           </v-col>
-          <v-col v-if="getCurrentProperty.features[0]" class="col-12">
+          <!-- <v-col v-if="getCurrentProperty.features[0]" class="col-12">
             <h3 class="text-center mt-4">
               Features:
             </h3>
@@ -76,7 +76,7 @@
             >
               {{ feature.name }}
             </p>
-          </v-col>
+          </v-col> -->
         </v-row>
         <div v-if="show_contact_form" class="contact grey lighten-2 rounded">
           <v-row class="no-gutters inner-row">
