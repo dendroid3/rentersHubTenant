@@ -253,7 +253,7 @@ export default {
         ],
 
         residential: [
-          'Singles', 'Double', 'Bedsitters', 'One Bedrooms', 'Two Bedrooms', 'Three Bedrooms', 'Apartments', 'Four Bedrooms', 'Five Bedrooms', 'Guest Houses', 'Day Care', 'Studio'
+          'Singles', 'Double', 'Bedsitters', 'One Bedroom', 'Two Bedrooms', 'Three Bedrooms', 'Apartments', 'Four Bedrooms', 'Five Bedrooms', 'Guest Houses', 'Day Care', 'Studio'
         ]
       }
 

@@ -173,7 +173,8 @@
               v-if="properties.properties.data.length < 1"
               class="col-12 d-flex justify-center"
             >
-              <empty-component :message="`Landlords and Property Agents are yet to post such a house in that area. Please contact Renters Hub office for a further assistance.`" />
+              <empty-component
+              :message="`Landlords and Property Agents are yet to post such a house in that area. Please contact Renters Hub office for a further assistance.`" />
             </v-col>
           </v-row>
         </v-row>
@@ -201,9 +202,14 @@
             v-if="isFetchingProperties"
           />
         </v-col>
-        <div v-if="isAtEndOfResults">
-          <empty-component :message="`It appears like that is all we have to match your search. Contact our customer care for further assistance`" :searched="true" />
-        </div>
+        <v-col
+          v-if="isAtEndOfResults && (properties.properties.data.length > 0)"
+          class="col-12 d-flex justify-center"
+        >
+          <empty-component
+          :message="`It appears like that is all we have to match your search. Contact our customer care for further assistance`"
+          :searched="true" />
+        </v-col>
       </v-row>
       <infinite-scroll
         v-if="!isFetchingProperties"
