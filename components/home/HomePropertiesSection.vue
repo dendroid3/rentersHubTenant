@@ -198,7 +198,7 @@
           class="col-md-3 col-12"
         >
           <properties-property-skeleton
-          v-if="isFetchingProperties"
+            v-if="isFetchingProperties"
           />
         </v-col>
         <div v-if="isAtEndOfResults">

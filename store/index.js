@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-// const BASE_URL = 'http://localhost:8000/api/'
-const BASE_URL = 'https://api.rentershub.co.ke/api/'
+const BASE_URL = 'http://localhost:8000/api/'
+// const BASE_URL = 'https://api.rentershub.co.ke/api/'
 
 export const state = () => ({
   alertMessage: null,
