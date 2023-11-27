@@ -178,10 +178,12 @@
           </v-row>
         </v-row>
       </section>
-      <v-row class="col-md-10 offset-md-1 col-12"
+      <v-row
+        class="col-md-10 offset-md-1 col-12"
         :class="{
           'ma-0': ((!$vuetify.breakpoint.md && !$vuetify.breakpoint.xl && !$vuetify.breakpoint.lg))
-        }">
+        }"
+      >
         <v-col
           v-for="(property, index) in (properties.properties) ? properties.properties.data : null"
           :key="index"
@@ -191,15 +193,16 @@
           <properties-property-card :property="property" />
         </v-col>
         <v-col
-          v-if="isFetchingProperties"
           v-for="(property, index) in (($vuetify.breakpoint.md || $vuetify.breakpoint.xl || $vuetify.breakpoint.lg) ? 4 : 1)"
           :key="index"
           class="col-md-3 col-12"
         >
-          <properties-property-skeleton />
+          <properties-property-skeleton
+          v-if="isFetchingProperties"
+          />
         </v-col>
         <div v-if="isAtEndOfResults">
-          <empty-component :message="`It appears like that is all we have to match your search. Contact our customer care for further assistance`" :searched="true"/>
+          <empty-component :message="`It appears like that is all we have to match your search. Contact our customer care for further assistance`" :searched="true" />
         </div>
       </v-row>
       <infinite-scroll
@@ -313,7 +316,7 @@ export default {
       }
 
       return this.filterData.keywords.split(',')
-    },
+    }
 
     // pagination_links () {
     //   if (!this.getDisplayProperties) {
@@ -438,7 +441,6 @@ export default {
       }
 
       if (this.addToProperties) {
-
         if (this.getDisplayProperties.properties.current_page === this.getDisplayProperties.properties.last_page) {
           this.isAtEndOfResults = true
           return
@@ -446,7 +448,6 @@ export default {
 
         data.add = true
         data.next = true
-
       }
 
       setTimeout(() => {
@@ -464,8 +465,6 @@ export default {
           })
         }
       }, 0)
-
-
     },
 
     goToTop () {

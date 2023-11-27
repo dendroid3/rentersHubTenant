@@ -64,7 +64,7 @@ export default {
     sendMessageToWhatsApp () {
       let message = 'Hello.%20I%20am%20from%20the%20website,%20https://rentershub.co.ke%20and%20I%20need%20some%20more%20assistance.%0a'
 
-      if(this.searched){
+      if (this.searched) {
         message = message + 'I%20have%20already%20seen%20some%20results%20they%20did%20not%20match%20exactly%20what%20I%20wanted.%0a%0a'
       }
 
