@@ -123,10 +123,9 @@ export const actions = {
         ))[0].url
       }
 
-      alert(res.data)
-
       const res = await axios.post(url, data)
 
+      console.log(res)
       if (data.next) {
         const properties = res.data.properties.data
         const allProperties = [...getters.getDisplayProperties.properties.data]
